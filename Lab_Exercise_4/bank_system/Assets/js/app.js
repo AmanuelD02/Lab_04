@@ -1,51 +1,66 @@
 var bank = {
 	amanuel: {
-		fullname: 'Amanuel',
-		id: 0,
-		balance: 0
+		fullname: 'Amanuel Debebe',
+		balance: 0,
+		password: 'qwe'
 	},
 	debebe: {
-		fullname: 'Debebe',
-		id: 1,
-		balance: 0
+		fullname: 'Debebe Lakew',
+		balance: 0,
+		password: 'asd'
 	}
 };
 
-var aman = bank.amanuel;
+var current = bank.amanuel;
 var debebe = bank.debebe;
 
 function balance() {
-	alert(`Current Balance: ${aman.balance}`);
+	alert(`Current Balance: ${current.balance}`);
 }
 function dep(val) {
-	aman.balance += val;
+	current.balance += val;
 	balance();
 }
 
 function withdraw(val) {
-	if (aman.balance < 10) {
+	if (current.balance < 10) {
 		alert('Deposit is low');
 		return;
 	} else {
-		aman.balance -= val;
+		current.balance -= val;
 		balance();
 	}
 }
 
 function transfer(val, to = 'DEBEBE') {
-	if (aman.balance < 10) {
+	if (current.balance < 10) {
 		alert('Deposit is low');
 		return;
 	} else {
-		aman.balance -= val;
-		debebe.balance += val;
+		current.balance -= val;
+		bank[to]?.balance += val;
 		balance();
+	}
+}
+
+function createAccount(name, psd) {
+	bank[name] = {
+		password: psd,
+		balance: 0
+	};
+}
+
+function login(name, psd) {
+	if(bank[name][password] === psd){
+		return current = bank[name];
+	} else{
+		alert("Incoorect username or password");
 	}
 }
 
 (() => {
 	alert('What do you want to do?');
-	var a = prompt('1.Deposit\n2.balance\n3.withdraw\n4.transfer');
+	var a = prompt('1.To Deposit enter 1\n2.To check balance enter 2\n3.to withdraw enter 3\n4. to transfer enter 4');
 	switch (a) {
 		case '1':
 			var d = prompt('Enter The amount');
