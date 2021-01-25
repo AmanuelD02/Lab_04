@@ -1,15 +1,21 @@
 var bank = {
-	fullname: 'Amanuel',
-	id: 0,
-	balance: 0
+	amanuel: {
+		fullname: 'Amanuel',
+		id: 0,
+		balance: 0
+	},
+	debebe: {
+		fullname: 'Debebe',
+		id: 1,
+		balance: 0
+	}
 };
 
-var aman = bank;
-var debebe = bank;
-debebe.fullname = 'Debebe';
+var aman = bank.amanuel;
+var debebe = bank.debebe;
 
 function balance() {
-	console.log(`Current Balance: ${aman.balance}`);
+	alert(`Current Balance: ${aman.balance}`);
 }
 function dep(val) {
 	aman.balance += val;
@@ -18,7 +24,7 @@ function dep(val) {
 
 function withdraw(val) {
 	if (aman.balance < 10) {
-		console.log('Deposit is low');
+		alert('Deposit is low');
 		return;
 	} else {
 		aman.balance -= val;
@@ -28,7 +34,7 @@ function withdraw(val) {
 
 function transfer(val, to = 'DEBEBE') {
 	if (aman.balance < 10) {
-		console.log('Deposit is low');
+		alert('Deposit is low');
 		return;
 	} else {
 		aman.balance -= val;
@@ -37,8 +43,8 @@ function transfer(val, to = 'DEBEBE') {
 	}
 }
 
-(function init() {
-	console.log('What do you want to do?');
+(() => {
+	alert('What do you want to do?');
 	var a = prompt('1.Deposit\n2.balance\n3.withdraw\n4.transfer');
 	switch (a) {
 		case '1':
