@@ -38,7 +38,7 @@ function transfer(val, to = 'DEBEBE') {
 		return;
 	} else {
 		current.balance -= val;
-		bank[to]?.balance += val;
+		bank.to && bank.to.balance ? (bank.to.balance += val) : 0;
 		balance();
 	}
 }
@@ -51,16 +51,17 @@ function createAccount(name, psd) {
 }
 
 function login(name, psd) {
-	if(bank[name][password] === psd){
-		return current = bank[name];
-	} else{
-		alert("Incoorect username or password");
+	if (bank[name][password] === psd) {
+		return (current = bank[name]);
+	} else {
+		alert('Incoorect username or password');
 	}
 }
 
 (() => {
-	alert('What do you want to do?');
-	var a = prompt('1.To Deposit enter 1\n2.To check balance enter 2\n3.to withdraw enter 3\n4. to transfer enter 4');
+	var a = prompt(
+		'What do you want to do?\n\n1.To Deposit enter 1\n2.To check balance enter 2\n3.to withdraw enter 3\n4. to transfer enter 4'
+	);
 	switch (a) {
 		case '1':
 			var d = prompt('Enter The amount');
