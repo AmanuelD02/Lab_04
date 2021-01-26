@@ -1,7 +1,7 @@
 var bank = {
 	amanuel: {
 		fullname: 'Amanuel Debebe',
-		balance: 0,
+		balance: 1991,
 		password: 'qwe'
 	},
 	debebe: {
@@ -23,7 +23,7 @@ function dep(val) {
 }
 
 function withdraw(val) {
-	if (current.balance < 10) {
+	if (current.balance - val < 10) {
 		alert('Deposit is low');
 		return;
 	} else {
@@ -33,7 +33,7 @@ function withdraw(val) {
 }
 
 function transfer(val, to = 'DEBEBE') {
-	if (current.balance < 10) {
+	if (current.balance - val < 10) {
 		alert('Deposit is low');
 		return;
 	} else {
@@ -43,40 +43,31 @@ function transfer(val, to = 'DEBEBE') {
 	}
 }
 
-function createAccount(name, psd) {
-	bank[name] = {
-		password: psd,
-		balance: 0
-	};
-}
-
-function login(name, psd) {
-	if (bank[name][password] === psd) {
-		return (current = bank[name]);
-	} else {
-		alert('Incoorect username or password');
-	}
-}
-
 (() => {
-	var a = prompt(
-		'What do you want to do?\n\n1.To Deposit enter 1\n2.To check balance enter 2\n3.to withdraw enter 3\n4. to transfer enter 4'
-	);
-	switch (a) {
-		case '1':
-			var d = prompt('Enter The amount');
-			dep(d);
-			break;
-		case '2':
-			balance();
-			break;
-		case '3':
-			var w = prompt('enter The amount');
-			withdraw(w);
-			break;
-		case '4':
-			var w = prompt('enter The amount');
-			var t = prompt('Enter the person to transfer');
-			transfer(w, t);
+	alert('WELCOME TO AM INTERNATIONAL BANK');
+	while (true) {
+		var a = prompt(
+			'What do you want to do?\n\n1.To Deposit enter 1\n2.To check balance enter 2\n3.to withdraw enter 3\n4. to transfer enter 4\nTo exit Enter any other key'
+		);
+		switch (a) {
+			case '1':
+				var d = prompt('Enter The amount');
+				dep(d);
+				break;
+			case '2':
+				balance();
+				break;
+			case '3':
+				var w = prompt('Enter The amount');
+				withdraw(w);
+				break;
+			case '4':
+				var w = prompt('Enter The amount');
+				var t = prompt('Enter the person to transfer');
+				transfer(w, t);
+			default:
+				alert('Thank You! Come Again');
+				return;
+		}
 	}
 })();
